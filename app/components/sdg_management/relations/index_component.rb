@@ -46,8 +46,20 @@ class SDGManagement::Relations::IndexComponent < ApplicationComponent
       t("#{search_namespace}.advanced_filters.sdg_goals.all")
     end
 
+    def target_label
+      t("#{search_namespace}.advanced_filters.sdg_targets.label")
+    end
+
+    def target_blank_option
+      t("#{search_namespace}.advanced_filters.sdg_targets.all")
+    end
+
     def goal_options
       options_from_collection_for_select(SDG::Goal.all, :code, :code_and_title, params[:goal_code])
+    end
+
+    def target_options
+      options_from_collection_for_select(SDG::Target.all.sort, :code, :code, params[:target_code])
     end
 
     def search_namespace
